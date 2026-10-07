@@ -1,0 +1,141 @@
+import type { AIWorkflow, SkillCategory } from "@/types";
+
+// Every entry is backed by the source repositories of WeCMS (legacy and refactor),
+// WeCMS Batch, WABOOKS, and JexAdmin. AI tools reflect day-to-day engineering use.
+export const skillCategories: SkillCategory[] = [
+  {
+    id: "backend",
+    title: "Backend",
+    description: "Java services on both the legacy JexFrame platform and modern Spring Boot.",
+    skills: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "Spring Data JPA / Hibernate",
+      "RESTful APIs",
+      "JWT",
+      "JexFrame",
+      "JEX SimpleBatch",
+      "Scheduled jobs (ShedLock)",
+    ],
+  },
+  {
+    id: "frontend",
+    title: "Frontend",
+    description: "Data-heavy enterprise screens, from JSP to Next.js.",
+    skills: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "JSP",
+      "jQuery",
+      "HTML",
+      "CSS",
+    ],
+  },
+  {
+    id: "database",
+    title: "Database",
+    description: "PostgreSQL as the primary application database; Oracle as an enterprise/ERP integration datasource.",
+    skills: ["PostgreSQL", "Oracle (ERP integration)", "SQL", "JPA / Hibernate", "JdbcTemplate", "Database Design"],
+  },
+  {
+    id: "devops",
+    title: "Build, Test & Delivery",
+    description: "Builds, tests, version control, and pipelines, with the infrastructure team.",
+    skills: [
+      "Git",
+      "GitLab CI/CD",
+      "SVN",
+      "Gradle",
+      "npm",
+      "Apache Tomcat",
+      "JBoss / WildFly",
+      "JUnit 5",
+      "Mockito",
+      "Vitest",
+    ],
+  },
+  {
+    id: "enterprise",
+    title: "Enterprise Integration",
+    description: "The financial-domain and integration work behind the code.",
+    skills: [
+      "Financial Systems",
+      "Cash Management Systems",
+      "Banking Integration",
+      "Firm Banking (bulk transfers)",
+      "SFTP",
+      "ERP Integration",
+      "Oracle → PostgreSQL Data Sync",
+      "E-invoice Integration",
+      "Batch Processing",
+      "Excel & PDF Reporting",
+      "Legacy System Modernization",
+      "Production Troubleshooting",
+      "System Analysis",
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI-Assisted Engineering",
+    description: "Tools and practices used in daily engineering work.",
+    skills: [
+      "Claude",
+      "Claude Code",
+      "ChatGPT",
+      "Codex",
+      "MCP",
+      "Prompt Engineering",
+      "AI-Assisted Analysis",
+      "AI-Assisted Refactoring",
+      "AI-Assisted Debugging",
+      "AI-Assisted Documentation",
+    ],
+  },
+];
+
+export const aiWorkflow: AIWorkflow = {
+  statement:
+    "I use AI as part of the software engineering workflow to improve development speed, analysis quality, debugging efficiency, documentation, and refactoring while maintaining engineering standards and code quality.",
+  steps: [
+    { title: "Requirement Analysis", description: "Clarify scope, open questions, and acceptance criteria." },
+    { title: "Legacy / System Analysis", description: "Trace screens, services, SQL, and tables end to end." },
+    { title: "Architecture", description: "Compare options and record the decision and its impact." },
+    { title: "Implementation", description: "Generate and edit code within project rules and conventions." },
+    { title: "Code Review", description: "Review diffs for correctness, regressions, and drift." },
+    { title: "Debugging", description: "Narrow root causes from logs, data, and source." },
+    { title: "Testing", description: "Build test cases and parity checks against legacy output." },
+    { title: "Refactoring", description: "Simplify safely, one verified change at a time." },
+    { title: "Documentation", description: "Keep specs, audits, and as-built records current." },
+    { title: "Deployment", description: "Prepare file lists, scripts, and release notes." },
+  ],
+  tools: [
+    { name: "Claude", description: "Reasoning, design discussion, and writing." },
+    { name: "Claude Code", description: "Repository-aware analysis, implementation, and review." },
+    { name: "ChatGPT", description: "Research and quick problem exploration." },
+    { name: "Codex", description: "Code generation and second-opinion review." },
+    { name: "MCP", description: "Controlled, read-only access to schemas and tools." },
+  ],
+  principles: [
+    {
+      title: "Engineer stays accountable",
+      detail: "AI proposes; every change is reviewed, understood, and owned before it ships.",
+    },
+    {
+      title: "Source of truth first",
+      detail: "Analysis is grounded in the real code and data, not in assumptions.",
+    },
+    {
+      title: "Guardrails by default",
+      detail: "Project rules, read-only database access, and no secrets in prompts or output.",
+    },
+    {
+      title: "Verified, not trusted",
+      detail: "Lint, type checks, builds, and tests decide whether work is done.",
+    },
+  ],
+};
