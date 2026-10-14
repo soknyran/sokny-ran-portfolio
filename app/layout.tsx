@@ -5,7 +5,7 @@ import { MotionProvider } from "@/components/layout/MotionProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { profile } from "@/data/profile";
 import { siteConfig, siteUrl } from "@/lib/site";
-import { themeInitScript } from "@/lib/theme";
+import { THEME_COLORS, themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -46,10 +46,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f4f4f6" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
+  // Light by default; the inline theme script and ThemeToggle update it for dark.
+  themeColor: THEME_COLORS.light,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

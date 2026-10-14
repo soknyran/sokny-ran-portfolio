@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Class-based dark mode: <html class="dark"> is set before paint by the theme script
-   (it follows prefers-color-scheme unless the visitor picked a theme). */
+   (light unless the visitor chose dark). */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ── Design tokens ─────────────────────────────────────────────── */
