@@ -61,7 +61,6 @@ export interface Experience {
   /** Optional lead paragraph shown above the responsibilities. */
   summary?: string;
   responsibilities: ResponsibilityGroup[];
-  technologies: string[];
 }
 
 export type ProjectStatus =

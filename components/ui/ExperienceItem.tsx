@@ -3,7 +3,6 @@ import { ChevronRight } from "lucide-react";
 import type { Experience, Project } from "@/types";
 import { projectIcon } from "@/lib/projectIcons";
 import { IconBadge } from "./IconBadge";
-import { SkillBadgeList } from "./SkillBadge";
 import { Panel } from "./Panel";
 
 export function ExperienceItem({ item, platforms = [] }: { item: Experience; platforms?: Project[] }) {
@@ -64,10 +63,6 @@ export function ExperienceItem({ item, platforms = [] }: { item: Experience; pla
             })}
           </ul>
         </>
-      )}
-
-      {item.technologies.length > 0 && (
-        <SkillBadgeList label={`Technologies at ${item.company}`} skills={item.technologies} className="mt-5" />
       )}
     </Panel>
   );

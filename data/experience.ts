@@ -40,7 +40,6 @@ export const experience: Experience[] = [
         ],
       },
     ],
-    technologies: ["Java", "Spring Boot", "JexFrame", "Next.js", "TypeScript", "PostgreSQL"],
   },
   {
     company: "CAMBODIASOFT",
@@ -73,6 +72,5 @@ export const experience: Experience[] = [
         ],
       },
     ],
-    technologies: [],
   },
 ];
