@@ -31,7 +31,7 @@ components/
   layout/                 Navbar, Footer, MotionProvider
   sections/               Hero, About, Experience, Projects, Skills, AIDevelopment, Education, Contact
   ui/                     Reusable pieces: Button, SectionHeading, ProjectCard, ExperienceItem,
-                          SkillBadge, SocialLinks, ThemeToggle, Card, ArchitectureDiagram, …
+                          SkillBadge, SocialLinks, ThemeToggle, Panel, IconBadge, Sweep, Terminal, ArchitectureDiagram, …
 data/                     ALL site content lives here
   profile.ts  social.ts  experience.ts  projects.ts  skills.ts  education.ts
 lib/                      site config (URL, SEO, nav), theme helpers, active-section hook, cn()
@@ -68,10 +68,10 @@ All content is in `data/`. Components only render it.
 
 | What | File | Notes |
 | --- | --- | --- |
-| Name, title, tagline, hero summary, about text, "At a glance" facts, languages, email | `data/profile.ts` | Remaining to-dos are listed at the top of the file |
+| Name, title, tagline, hero summary, about text, stats row, languages, email | `data/profile.ts` | Remaining to-dos are listed at the top of the file |
 | LinkedIn / GitHub / email links | `data/social.ts` | Used by navbar, hero, contact, footer and JSON-LD |
 | Experience | `data/experience.ts` | Responsibilities are grouped; add/remove groups freely |
-| Projects + case studies | `data/projects.ts` | `slug` becomes `/projects/<slug>` (unlinked); `featured: true` adds the architecture diagram to the card |
+| Projects + case studies | `data/projects.ts` | `slug` becomes `/projects/<slug>` (unlinked); `featured: true` makes the card full width with its architecture diagram |
 | Skills + AI workflow | `data/skills.ts` | `skillCategories` and `aiWorkflow` |
 | Education | `data/education.ts` | |
 | Navigation, SEO title/description/keywords | `lib/site.ts` | |
@@ -82,7 +82,7 @@ All content is in `data/`. Components only render it.
 **Experience:** edit or add entries in `data/experience.ts`. An entry with `end: "Present"` gets the
 highlighted timeline node.
 
-**Skills:** edit `skillCategories` in `data/skills.ts`; they render as the Skills cards.
+**Skills:** edit `skillCategories` in `data/skills.ts`; they render as the Tech specs list.
 
 ### Updating the CV
 
