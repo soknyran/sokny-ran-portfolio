@@ -34,6 +34,7 @@ export const projects: Project[] = [
       "Trace and resolve production issues from screen to service to SQL.",
       "Coordinate with Product, QA, infrastructure, and database engineers across Korea, Vietnam, and Cambodia.",
     ],
+    tags: ["Java 11", "JexFrame", "JSP", "PostgreSQL", "Oracle"],
     technologies: [
       "Java 11",
       "JexFrame",
@@ -177,6 +178,7 @@ export const projects: Project[] = [
       "Deployment support and infrastructure collaboration",
       "AI-assisted development using Claude Code",
     ],
+    tags: ["Java 21", "Spring Boot", "Next.js", "TypeScript", "PostgreSQL"],
     technologies: [
       "Java 21",
       "Spring Boot 3.5",
@@ -351,6 +353,7 @@ export const projects: Project[] = [
       "Performance improvement",
       "Customer requirement implementation",
     ],
+    tags: ["Java 11", "JexFrame", "JSP", "PostgreSQL"],
     technologies: ["Java 11", "JexFrame", "JSP", "TypeScript", "jQuery", "PostgreSQL", "REST APIs", "JBoss / WildFly"],
     stacks: [
       {
@@ -467,6 +470,7 @@ export const projects: Project[] = [
       "Integration configuration used by WABOOKS and WeCMS",
       "Backend maintenance and production support",
     ],
+    tags: ["Java", "JexFrame", "JEX Admin / Studio", "JSP"],
     technologies: ["Java", "JexFrame", "JEX Admin / Studio", "JSP", "jQuery", "DataTables", "PostgreSQL"],
     stacks: [
       {

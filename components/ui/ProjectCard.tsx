@@ -26,7 +26,7 @@ export function ProjectCard({ project }: { project: Project }) {
         featured && "lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] lg:gap-8",
       )}
     >
-      <div className="flex min-w-0 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-start gap-3">
           <IconBadge icon={icon} hue={hue} />
           <div className="min-w-0 flex-1">
@@ -51,11 +51,7 @@ export function ProjectCard({ project }: { project: Project }) {
           ))}
         </ul>
 
-        <SkillBadgeList
-          label="Key technologies"
-          skills={project.technologies.slice(0, featured ? 9 : 6)}
-          className="mt-4"
-        />
+        <SkillBadgeList label="Key technologies" skills={project.tags} className="mt-auto pt-4" />
 
         {project.githubUrl && (
           <a

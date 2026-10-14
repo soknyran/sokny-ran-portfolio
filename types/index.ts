@@ -93,6 +93,9 @@ export interface Project {
   problem: string;
   solution: string;
   responsibilities: string[];
+  /** The few main technologies shown on the homepage card. */
+  tags: string[];
+  /** Full technology list for the case-study page. */
   technologies: string[];
   achievements: string[];
   challenges: TitledText[];
