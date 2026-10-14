@@ -1,9 +1,9 @@
 # Sokny Ran — Portfolio
 
 Personal portfolio of **Sokny Ran**, Software Engineer | Full-Stack Developer | AI-Assisted Development.
-A static, data-driven Next.js site with a homepage and engineering case studies for each project.
+A static, data-driven Next.js site: a single homepage. The `/projects/<slug>` case-study pages still build but are no longer linked from the site.
 
-![Portfolio homepage, dark theme](docs/screenshot.png)
+![Portfolio homepage, light theme](docs/screenshot.png)
 
 ## Tech stack
 
@@ -24,24 +24,23 @@ app/
   projects/[slug]/page.tsx  Case study pages (statically generated)
   not-found.tsx           404 page
   opengraph-image.tsx     Generated 1200×630 social preview image
-  icon.tsx, apple-icon.tsx, favicon.ico
+  icon.tsx, apple-icon.tsx  Generated text-only monogram icons (no photo)
   sitemap.ts, robots.ts, manifest.ts
   globals.css             Design tokens (light/dark) + base styles
 components/
   layout/                 Navbar, Footer, MotionProvider
   sections/               Hero, About, Experience, Projects, Skills, AIDevelopment, Education, Contact
   ui/                     Reusable pieces: Button, SectionHeading, ProjectCard, ExperienceItem,
-                          SkillBadge, SocialLinks, ThemeToggle, Terminal, Tile, AppIcon, ArchitectureDiagram, …
+                          SkillBadge, SocialLinks, ThemeToggle, Card, ArchitectureDiagram, …
 data/                     ALL site content lives here
   profile.ts  social.ts  experience.ts  projects.ts  skills.ts  education.ts
 lib/                      site config (URL, SEO, nav), theme helpers, active-section hook, cn()
 types/                    Shared TypeScript types
 public/
   resume/sokny-ran-cv.pdf The downloadable CV (edit docs/Sokny-Ran-CV.docx, then re-export)
-  profile/                Profile photo (sokny-ran-headshot.jpg)
 ```
 
-Only the Navbar, ThemeToggle, ProfileAvatar and MotionProvider are client components.
+Only the Navbar, ThemeToggle and MotionProvider are client components. The site uses no photos.
 Everything else renders on the server at build time.
 
 ## Getting started
@@ -69,43 +68,26 @@ All content is in `data/`. Components only render it.
 
 | What | File | Notes |
 | --- | --- | --- |
-| Name, title, tagline, hero summary, about text, stats row, languages, email | `data/profile.ts` | Remaining to-dos are listed at the top of the file |
+| Name, title, tagline, hero summary, about text, "At a glance" facts, languages, email | `data/profile.ts` | Remaining to-dos are listed at the top of the file |
 | LinkedIn / GitHub / email links | `data/social.ts` | Used by navbar, hero, contact, footer and JSON-LD |
 | Experience | `data/experience.ts` | Responsibilities are grouped; add/remove groups freely |
-| Projects + case studies | `data/projects.ts` | `slug` becomes `/projects/<slug>`; `featured: true` makes the card full width |
+| Projects + case studies | `data/projects.ts` | `slug` becomes `/projects/<slug>` (unlinked); `featured: true` adds the architecture diagram to the card |
 | Skills + AI workflow | `data/skills.ts` | `skillCategories` and `aiWorkflow` |
 | Education | `data/education.ts` | |
 | Navigation, SEO title/description/keywords | `lib/site.ts` | |
 
-**Adding a project:** append an object to `projects` in `data/projects.ts`. The card, case study
-page, sitemap entry and static route are all generated from it. Optional fields: `image` (card cover),
-`githubUrl`, `liveUrl`, `workflow`. Without `image`, the card shows
-an architecture diagram drawn from `architecture.layers`.
+**Adding a project:** append an object to `projects` in `data/projects.ts`. The homepage card and the
+(unlinked) case-study route are generated from it. Optional fields: `githubUrl`, `liveUrl`, `workflow`.
 
 **Experience:** edit or add entries in `data/experience.ts`. An entry with `end: "Present"` gets the
 highlighted timeline node.
 
-**Skills:** edit `skillCategories` in `data/skills.ts`; they render as the "Tech specs" list.
-
-### Replacing the profile photo
-
-The current photo is `public/profile/sokny-ran-headshot.jpg` (800×800, head and shoulders).
-
-1. Save a square photo (at least 400×400) in `public/profile/`, ideally under a new file name so
-   browsers and the CDN do not serve a cached copy of the old one.
-2. Update `photo` in `data/profile.ts`:
-   ```ts
-   photo: { src: "/profile/<file>.jpg", alt: "Sokny Ran", width: 800, height: 800, position: "50% 50%", zoom: 1 },
-   ```
-   Use the image's real pixel size. It is shown as a circle with `object-cover`; `position` and `zoom`
-   adjust the crop. Set `photo: null` to show the initials instead.
-3. The favicon and app icons (`app/favicon.ico`, `app/icon.png`, `app/apple-icon.png`) are separate
-   image files; regenerate them from the new photo as well.
+**Skills:** edit `skillCategories` in `data/skills.ts`; they render as the Skills cards.
 
 ### Updating the CV
 
 The editable source is `docs/Sokny-Ran-CV.docx`. After editing it, export it to PDF (in Word: File → Save As →
-PDF) and overwrite `public/resume/sokny-ran-cv.pdf`. Keep the file name, or update `resumeUrl` in
+PDF) and overwrite `public/resume/sokny-ran-cv.pdf`. The source has no photo; keep it that way. Keep the file name, or update `resumeUrl` in
 `data/profile.ts`. The download file name is `resumeFileName`.
 
 ### Social preview image
