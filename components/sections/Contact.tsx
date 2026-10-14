@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 import { getSocialLinks } from "@/data/social";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { ButtonAnchor } from "@/components/ui/Button";
-import { DownloadCVButton } from "@/components/ui/DownloadCVButton";
+import { DownloadResumeButton } from "@/components/ui/DownloadResumeButton";
 import { socialIcons } from "@/components/ui/SocialLinks";
 import { Panel } from "@/components/ui/Panel";
 import { Container } from "@/components/ui/Container";
@@ -31,7 +31,7 @@ export function Contact() {
               <Mail className="size-4" aria-hidden="true" />
               Email me
             </ButtonAnchor>
-            <DownloadCVButton variant="secondary" />
+            <DownloadResumeButton variant="secondary" />
           </div>
 
           <ul className="mt-8 grid w-full max-w-3xl grid-cols-1 gap-2 min-[480px]:grid-cols-2 lg:grid-cols-3">

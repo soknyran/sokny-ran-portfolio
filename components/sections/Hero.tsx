@@ -1,7 +1,7 @@
 import { profile } from "@/data/profile";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { DownloadCVButton } from "@/components/ui/DownloadCVButton";
+import { DownloadResumeButton } from "@/components/ui/DownloadResumeButton";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { Terminal } from "@/components/ui/Terminal";
 import { Panel } from "@/components/ui/Panel";
@@ -36,7 +36,7 @@ export function Hero() {
           <p className="mt-2.5 max-w-[640px] text-muted text-pretty">{profile.heroSummary}</p>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
-            <DownloadCVButton variant="primary" />
+            <DownloadResumeButton variant="primary" />
             <ButtonLink href="/#contact" variant="secondary">
               Contact me
             </ButtonLink>

@@ -11,7 +11,7 @@ import { navItems } from "@/lib/site";
 import { useActiveSection } from "@/lib/useActiveSection";
 import { cn } from "@/lib/cn";
 import { Container } from "@/components/ui/Container";
-import { DownloadCVButton } from "@/components/ui/DownloadCVButton";
+import { DownloadResumeButton } from "@/components/ui/DownloadResumeButton";
 import { socialIcons } from "@/components/ui/SocialLinks";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
@@ -103,7 +103,7 @@ export function Navbar() {
 
         <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-0">
           <ThemeToggle />
-          <DownloadCVButton variant="primary" size="xs" label="CV" />
+          <DownloadResumeButton variant="primary" size="xs" label="Resume" />
           <div
             ref={menuRef}
             className="relative md:hidden"
@@ -184,7 +184,7 @@ export function Navbar() {
                   </ul>
 
                   <div className="mt-1 border-t border-border px-1 pt-2 pb-1">
-                    <DownloadCVButton variant="primary" size="sm" className="w-full" />
+                    <DownloadResumeButton variant="primary" size="sm" className="w-full" />
                   </div>
                 </m.div>
               )}

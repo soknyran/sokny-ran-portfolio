@@ -39,7 +39,7 @@ export interface Profile {
   /** Principle cards in the About section. */
   aboutHighlights: { title: string; description: string }[];
   stats: Stat[];
-  /** Spoken languages, as listed on the CV. */
+  /** Spoken languages, as listed on the resume. */
   languages: string[];
   contactTopics: string[];
 }
@@ -123,7 +123,7 @@ export interface Education {
   credential: string;
   start: string;
   end: string;
-  /** Optional short public description of the institution (website only, not the CV). */
+  /** Optional short public description of the institution (website only, not the resume). */
   description?: string;
 }
 

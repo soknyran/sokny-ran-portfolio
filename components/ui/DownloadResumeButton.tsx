@@ -2,19 +2,19 @@ import { Download } from "lucide-react";
 import { profile } from "@/data/profile";
 import { ButtonAnchor } from "./Button";
 
-interface DownloadCVButtonProps {
+interface DownloadResumeButtonProps {
   variant?: "primary" | "secondary" | "ghost";
   size?: "xs" | "sm" | "md";
   label?: string;
   className?: string;
 }
 
-export function DownloadCVButton({
+export function DownloadResumeButton({
   variant = "secondary",
   size = "md",
-  label = "Download CV",
+  label = "Download resume",
   className,
-}: DownloadCVButtonProps) {
+}: DownloadResumeButtonProps) {
   return (
     <ButtonAnchor
       href={profile.resumeUrl}
