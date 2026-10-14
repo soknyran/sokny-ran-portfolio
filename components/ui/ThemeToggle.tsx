@@ -2,7 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
-import { THEME_COLORS, THEME_STORAGE_KEY, normalizeTheme, type Theme } from "@/lib/theme";
+import { THEME_STORAGE_KEY, normalizeTheme, setThemeColorMeta, type Theme } from "@/lib/theme";
 
 const listeners = new Set<() => void>();
 
@@ -26,7 +26,7 @@ function subscribe(listener: () => void) {
 
 function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle("dark", theme === "dark");
-  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", THEME_COLORS[theme]);
+  setThemeColorMeta(theme);
 }
 
 function writeTheme(theme: Theme) {
@@ -47,7 +47,7 @@ export function ThemeToggle() {
   // null during server render and hydration: a same-size placeholder avoids a mismatch.
   const theme = useSyncExternalStore<Theme | null>(subscribe, readTheme, () => null);
 
-  // The inline script can run before the theme-color meta tag exists, so sync it once mounted.
+  // Keeps the theme-color tag in step if storage changed in another tab.
   useEffect(() => {
     if (theme) applyTheme(theme);
   }, [theme]);
