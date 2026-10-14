@@ -37,7 +37,7 @@ export function SocialLinks({ className, kinds, size = "md" }: SocialLinksProps)
               title={label}
               {...(external && { target: "_blank", rel: "noopener noreferrer" })}
               className={cn(
-                "inline-flex items-center justify-center rounded-md border border-border text-muted transition-colors hover:border-border-strong hover:text-fg",
+                "inline-flex items-center justify-center rounded-full bg-fill text-muted transition-colors hover:bg-fill-hover hover:text-fg",
                 size === "sm" ? "size-8" : "size-9",
               )}
             >

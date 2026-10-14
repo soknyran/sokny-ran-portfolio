@@ -3,20 +3,21 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "secondary" | "ghost";
-type Size = "sm" | "md";
+type Size = "xs" | "sm" | "md";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md border font-medium whitespace-nowrap transition-colors";
+  "inline-flex items-center justify-center gap-1.5 rounded-full border font-medium tracking-[-0.01em] whitespace-nowrap transition-colors";
 
 const variants: Record<Variant, string> = {
-  primary: "border-accent bg-accent text-accent-fg hover:border-accent-hover hover:bg-accent-hover",
-  secondary: "border-border-strong bg-surface text-fg hover:border-fg/40",
-  ghost: "border-transparent text-muted hover:bg-surface-2 hover:text-fg",
+  primary: "border-transparent bg-btn text-white hover:bg-btn-hover",
+  secondary: "border-accent text-accent hover:bg-accent hover:text-surface",
+  ghost: "border-transparent text-muted hover:bg-fill hover:text-fg",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-8 px-3 text-sm",
-  md: "h-10 px-4 text-sm",
+  xs: "h-7 px-3 text-xs",
+  sm: "h-9 px-4 text-sm",
+  md: "h-10 px-5 text-sm",
 };
 
 function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {

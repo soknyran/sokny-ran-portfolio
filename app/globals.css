@@ -5,36 +5,66 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ── Design tokens ─────────────────────────────────────────────── */
-/* Light: warm paper with ink text. Dark: deep blue-black. One teal accent in both. */
 :root {
-  --bg: #f7f6f2;
+  --bg: #f4f4f6;
   --surface: #ffffff;
-  --surface-2: #efede7;
-  --border: #e2dfd6;
-  --border-strong: #c9c5b9;
-  --fg: #15171a;
-  --muted: #50545c;
-  --subtle: #62666f;
-  --accent: #0f766e;
-  --accent-hover: #115e59;
+  --surface-2: #f4f4f6;
+  --fill: #e7e7ec;
+  --fill-hover: #dadae0;
+  --border: rgb(0 0 0 / 0.08);
+  --border-strong: rgb(0 0 0 / 0.16);
+  --fg: #1b1b1f;
+  --muted: #5f5f66;
+  --subtle: #6a6a71;
+  --accent: #0063cc;
+  --accent-hover: #0057b3;
   --accent-fg: #ffffff;
-  --accent-soft: rgb(15 118 110 / 0.09);
+  --accent-soft: rgb(0 99 204 / 0.1);
+  --btn: #0068d6;
+  --btn-hover: #005bbd;
+  --grid-line: rgb(0 0 0 / 0.045);
+  --shadow: 0 6px 28px -6px rgb(0 0 0 / 0.12);
+  /* Headline colour sweep (start, middle, end) and badge hues. */
+  --sweep-1: #0b63e5;
+  --sweep-2: #5b4ce0;
+  --sweep-3: #0d8484;
+  --hue-blue: #1a73e8;
+  --hue-green: #1fa45a;
+  --hue-violet: #8a4fe0;
+  --hue-orange: #e07f00;
+  --hue-teal: #1b9fb4;
+  --hue-indigo: #5452d6;
   color-scheme: light;
 }
 
 .dark {
-  --bg: #0c0f13;
-  --surface: #12161c;
-  --surface-2: #1a1f27;
-  --border: #252b35;
-  --border-strong: #353d4a;
-  --fg: #e9ebee;
-  --muted: #a1a8b2;
-  --subtle: #8c949f;
-  --accent: #2dd4bf;
-  --accent-hover: #5eead4;
-  --accent-fg: #0c0f13;
-  --accent-soft: rgb(45 212 191 / 0.1);
+  --bg: #000000;
+  --surface: #1a1a1d;
+  --surface-2: #26262a;
+  --fill: #2b2b30;
+  --fill-hover: #38383e;
+  --border: rgb(255 255 255 / 0.09);
+  --border-strong: rgb(255 255 255 / 0.18);
+  --fg: #f4f4f6;
+  --muted: #a3a3aa;
+  --subtle: #8f8f97;
+  --accent: #4ba3ff;
+  --accent-hover: #74b8ff;
+  --accent-fg: #ffffff;
+  --accent-soft: rgb(75 163 255 / 0.14);
+  --btn: #0a6fd8;
+  --btn-hover: #1a7de6;
+  --grid-line: rgb(255 255 255 / 0.04);
+  --shadow: 0 6px 28px -6px rgb(0 0 0 / 0.6);
+  --sweep-1: #3b9bff;
+  --sweep-2: #9d8cff;
+  --sweep-3: #3fd0c9;
+  --hue-blue: #2a85ff;
+  --hue-green: #2fc46b;
+  --hue-violet: #a66df5;
+  --hue-orange: #ff9d1a;
+  --hue-teal: #34bfd4;
+  --hue-indigo: #6c6af0;
   color-scheme: dark;
 }
 
@@ -42,6 +72,8 @@
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-fill: var(--fill);
+  --color-fill-hover: var(--fill-hover);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-fg: var(--fg);
@@ -51,20 +83,29 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
-  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --color-btn: var(--btn);
+  --color-btn-hover: var(--btn-hover);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --shadow-card: var(--shadow);
+  --color-sweep-1: var(--sweep-1);
+  --color-sweep-2: var(--sweep-2);
+  --color-sweep-3: var(--sweep-3);
 }
 
 /* ── Base ──────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 4rem;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--bg);
   color: var(--fg);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
   overflow-x: clip;
 }
 
@@ -75,22 +116,39 @@ body {
 
 :focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
-/* Fine grid used behind the case-study header and architecture visuals. */
+/* IconBadge: a rounded square filled with one of the --hue-* colours (set via data-hue). */
+.icon-badge {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  color: #fff;
+  background-color: var(--badge-hue);
+}
+
+.icon-badge[data-hue="blue"] { --badge-hue: var(--hue-blue); }
+.icon-badge[data-hue="green"] { --badge-hue: var(--hue-green); }
+.icon-badge[data-hue="violet"] { --badge-hue: var(--hue-violet); }
+.icon-badge[data-hue="orange"] { --badge-hue: var(--hue-orange); }
+.icon-badge[data-hue="teal"] { --badge-hue: var(--hue-teal); }
+.icon-badge[data-hue="indigo"] { --badge-hue: var(--hue-indigo); }
+
+/* Subtle engineering grid used behind the case-study header and architecture visuals. */
 .bg-grid {
   background-image:
-    linear-gradient(to right, var(--border) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
-  background-size: 28px 28px;
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Hero entrance is CSS-only so the largest content paints without waiting for JS. */
-@keyframes rise {
+@keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -98,8 +156,8 @@ body {
   }
 }
 
-.animate-rise {
-  animation: rise 0.5s ease-out both;
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {

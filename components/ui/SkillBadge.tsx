@@ -1,11 +1,11 @@
 import { cn } from "@/lib/cn";
 
-/** Small square-cornered tag used for technologies. */
+/** Small pill used for technologies and tags. */
 export function SkillBadge({ children, className }: { children: string; className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded border border-border bg-surface-2 px-1.5 py-0.5 font-mono text-[11.5px] leading-tight text-fg/85",
+        "inline-flex items-center rounded-full bg-fill px-2.5 py-0.5 text-xs font-medium text-fg/80",
         className,
       )}
     >
