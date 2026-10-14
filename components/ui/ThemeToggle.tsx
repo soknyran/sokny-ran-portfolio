@@ -102,8 +102,8 @@ export function ThemeToggle() {
         aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
         className={cn(
-          "inline-flex size-8 items-center justify-center rounded-full bg-fill text-muted transition-colors hover:bg-fill-hover hover:text-fg",
-          open && "bg-fill-hover text-fg",
+          "inline-flex size-8 items-center justify-center rounded-md border border-border text-muted transition-colors hover:border-border-strong hover:text-fg",
+          open && "border-border-strong text-fg",
         )}
       >
         {current ? <current.Icon className="size-4" aria-hidden="true" /> : <span className="size-4" />}
@@ -114,7 +114,7 @@ export function ThemeToggle() {
           id={panelId}
           role="group"
           aria-label="Color theme"
-          className="absolute top-full right-0 z-10 mt-2 w-36 rounded-xl border border-border bg-surface p-1 shadow-card"
+          className="absolute top-full right-0 z-10 mt-2 w-36 rounded-lg border border-border bg-surface p-1 shadow-lg"
         >
           {OPTIONS.map(({ value, label, Icon }) => (
             <button
@@ -127,7 +127,7 @@ export function ThemeToggle() {
                 buttonRef.current?.focus();
               }}
               className={cn(
-                "flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm transition-colors hover:bg-fill",
+                "flex w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-sm transition-colors hover:bg-surface-2",
                 theme === value ? "text-fg" : "text-muted",
               )}
             >

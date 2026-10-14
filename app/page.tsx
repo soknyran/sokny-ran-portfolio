@@ -20,7 +20,6 @@ const personJsonLd = {
   jobTitle: profile.currentRole,
   description: siteConfig.description,
   url: siteUrl,
-  image: profile.photo ? `${siteUrl}${profile.photo.src}` : undefined,
   email: `mailto:${profile.email}`,
   worksFor: { "@type": "Organization", name: profile.currentCompany },
   address: { "@type": "PostalAddress", addressLocality: "Phnom Penh", addressCountry: "KH" },
@@ -39,10 +38,10 @@ export default function HomePage() {
       />
       <Hero />
       <About />
-      <Projects />
       <Experience />
-      <Skills />
+      <Projects />
       <AIDevelopment />
+      <Skills />
       <Education />
       <Contact />
     </>

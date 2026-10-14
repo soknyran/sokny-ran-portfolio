@@ -8,21 +8,9 @@ export interface SocialLink {
   display: string;
 }
 
-export interface ProfilePhoto {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  /** CSS object-position for cropping the photo into an avatar. */
-  position: string;
-  /** Scale applied around the avatar centre to trim surrounding background (1 = none). */
-  zoom: number;
-}
-
-export interface Stat {
-  /** Short headline value, e.g. a year or a count. */
-  value: string;
+export interface Fact {
   label: string;
+  value: string;
 }
 
 export interface Profile {
@@ -36,7 +24,6 @@ export interface Profile {
   /** Two or three sentences shown under the tagline in the hero. */
   heroSummary: string;
   location: string;
-  timezone: string;
   currentRole: string;
   currentCompany: string;
   /** Short status badges shown above the name in the Hero. */
@@ -44,14 +31,12 @@ export interface Profile {
   email: string;
   resumeUrl: string;
   resumeFileName: string;
-  /** Set to null to show the initials monogram instead of a photo. */
-  photo: ProfilePhoto | null;
   about: string[];
   /** One-line subtitle under the About heading. */
   aboutLead: string;
   /** Principle cards in the About section. */
   aboutHighlights: { title: string; description: string }[];
-  stats: Stat[];
+  facts: Fact[];
   /** Spoken languages, as listed on the CV. */
   languages: string[];
   contactTopics: string[];
@@ -92,13 +77,6 @@ export interface ArchitectureLayer {
   items: string[];
 }
 
-export interface ProjectImage {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-}
-
 export interface Project {
   slug: string;
   name: string;
@@ -126,8 +104,6 @@ export interface Project {
   stacks?: { label: string; items: string[] }[];
   /** Optional delivery workflow shown as a step sequence. */
   workflow?: string[];
-  /** Optional cover image. Without one, the architecture visual is used. */
-  image?: ProjectImage;
   githubUrl?: string;
   liveUrl?: string;
 }

@@ -4,7 +4,7 @@ import { ButtonAnchor } from "./Button";
 
 interface DownloadCVButtonProps {
   variant?: "primary" | "secondary" | "ghost";
-  size?: "xs" | "sm" | "md";
+  size?: "sm" | "md";
   label?: string;
   className?: string;
 }
@@ -23,7 +23,7 @@ export function DownloadCVButton({
       size={size}
       className={className}
     >
-      {size !== "xs" && <Download className="size-4" aria-hidden="true" />}
+      <Download className="size-4" aria-hidden="true" />
       {label}
     </ButtonAnchor>
   );

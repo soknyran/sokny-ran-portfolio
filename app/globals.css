@@ -5,61 +5,36 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ── Design tokens ─────────────────────────────────────────────── */
+/* Light: warm paper with ink text. Dark: deep blue-black. One teal accent in both. */
 :root {
-  --bg: #f4f4f6;
+  --bg: #f7f6f2;
   --surface: #ffffff;
-  --surface-2: #f4f4f6;
-  --fill: #e7e7ec;
-  --fill-hover: #dadae0;
-  --border: rgb(0 0 0 / 0.08);
-  --border-strong: rgb(0 0 0 / 0.16);
-  --fg: #1b1b1f;
-  --muted: #5f5f66;
-  --subtle: #6a6a71;
-  --accent: #0063cc;
-  --accent-hover: #0057b3;
+  --surface-2: #efede7;
+  --border: #e2dfd6;
+  --border-strong: #c9c5b9;
+  --fg: #15171a;
+  --muted: #50545c;
+  --subtle: #62666f;
+  --accent: #0f766e;
+  --accent-hover: #115e59;
   --accent-fg: #ffffff;
-  --accent-soft: rgb(0 99 204 / 0.1);
-  --btn: #0068d6;
-  --btn-hover: #005bbd;
-  --grid-line: rgb(0 0 0 / 0.045);
-  --shadow: 0 6px 28px -6px rgb(0 0 0 / 0.12);
-  --grad: linear-gradient(95deg, #0b63e5 0%, #5b4ce0 50%, #0d8484 100%);
-  --tint-blue: #1a73e8;
-  --tint-green: #1fa45a;
-  --tint-violet: #8a4fe0;
-  --tint-orange: #f08a00;
-  --tint-teal: #1b9fb4;
-  --tint-indigo: #5452d6;
+  --accent-soft: rgb(15 118 110 / 0.09);
   color-scheme: light;
 }
 
 .dark {
-  --bg: #000000;
-  --surface: #1a1a1d;
-  --surface-2: #26262a;
-  --fill: #2b2b30;
-  --fill-hover: #38383e;
-  --border: rgb(255 255 255 / 0.09);
-  --border-strong: rgb(255 255 255 / 0.18);
-  --fg: #f4f4f6;
-  --muted: #a3a3aa;
-  --subtle: #8f8f97;
-  --accent: #4ba3ff;
-  --accent-hover: #74b8ff;
-  --accent-fg: #ffffff;
-  --accent-soft: rgb(75 163 255 / 0.14);
-  --btn: #0a6fd8;
-  --btn-hover: #1a7de6;
-  --grid-line: rgb(255 255 255 / 0.04);
-  --shadow: 0 6px 28px -6px rgb(0 0 0 / 0.6);
-  --grad: linear-gradient(95deg, #3b9bff 0%, #9d8cff 50%, #3fd0c9 100%);
-  --tint-blue: #2a85ff;
-  --tint-green: #2fc46b;
-  --tint-violet: #a66df5;
-  --tint-orange: #ff9d1a;
-  --tint-teal: #34bfd4;
-  --tint-indigo: #6c6af0;
+  --bg: #0c0f13;
+  --surface: #12161c;
+  --surface-2: #1a1f27;
+  --border: #252b35;
+  --border-strong: #353d4a;
+  --fg: #e9ebee;
+  --muted: #a1a8b2;
+  --subtle: #8c949f;
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --accent-fg: #0c0f13;
+  --accent-soft: rgb(45 212 191 / 0.1);
   color-scheme: dark;
 }
 
@@ -67,8 +42,6 @@
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
-  --color-fill: var(--fill);
-  --color-fill-hover: var(--fill-hover);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-fg: var(--fg);
@@ -78,26 +51,20 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
-  --color-btn: var(--btn);
-  --color-btn-hover: var(--btn-hover);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --shadow-card: var(--shadow);
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
 /* ── Base ──────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4rem;
+  scroll-padding-top: 4.5rem;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--bg);
   color: var(--fg);
-  font-size: 15px;
-  line-height: 1.5;
-  letter-spacing: -0.011em;
   overflow-x: clip;
 }
 
@@ -108,54 +75,22 @@ body {
 
 :focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 6px;
+  outline-offset: 3px;
 }
 
-/* Gradient headline text; falls back to plain text in forced-colors mode. */
-.text-gradient {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-@media (forced-colors: active) {
-  .text-gradient {
-    background: none;
-    color: CanvasText;
-  }
-}
-
-/* Small rounded-square icon tile, tinted per use. */
-.app-icon {
-  display: inline-grid;
-  place-items: center;
-  flex: none;
-  color: #fff;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--tint) 78%, #fff), var(--tint));
-}
-
-.tint-blue { --tint: var(--tint-blue); }
-.tint-green { --tint: var(--tint-green); }
-.tint-violet { --tint: var(--tint-violet); }
-.tint-orange { --tint: var(--tint-orange); }
-.tint-teal { --tint: var(--tint-teal); }
-.tint-indigo { --tint: var(--tint-indigo); }
-
-/* Subtle engineering grid used behind the case-study header and architecture visuals. */
+/* Fine grid used behind the case-study header and architecture visuals. */
 .bg-grid {
   background-image:
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 /* Hero entrance is CSS-only so the largest content paints without waiting for JS. */
-@keyframes fade-up {
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -163,8 +98,8 @@ body {
   }
 }
 
-.animate-fade-up {
-  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+.animate-rise {
+  animation: rise 0.5s ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {

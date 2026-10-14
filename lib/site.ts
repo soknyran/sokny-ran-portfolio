@@ -44,8 +44,9 @@ export const siteConfig = {
 export const ogImage = { url: "/opengraph-image", width: 1200, height: 630, alt: siteConfig.title };
 
 export const navItems = [
-  { label: "Work", id: "work" },
+  { label: "About", id: "about" },
   { label: "Experience", id: "experience" },
-  { label: "Tech specs", id: "specs" },
+  { label: "Projects", id: "projects" },
+  { label: "Skills", id: "skills" },
   { label: "Contact", id: "contact" },
 ] as const;
