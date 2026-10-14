@@ -8,6 +8,7 @@ export const contentType = "image/png";
 const roles = ["Software Engineer", "Full-Stack Developer", "AI-Assisted Development"];
 const stack = ["Java", "Spring Boot", "Next.js", "PostgreSQL"];
 
+/** Text-only social preview: monogram, name, roles and core stack. No photo. */
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
@@ -19,39 +20,38 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#09090b",
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-          color: "#f4f4f5",
+          background: "#0c0f13",
+          borderTop: "12px solid #2dd4bf",
+          color: "#e9ebee",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: 56,
-              height: 56,
-              borderRadius: 14,
-              background: "#f4f4f5",
-              color: "#09090b",
-              fontSize: 22,
+              width: 60,
+              height: 60,
+              borderRadius: 10,
+              background: "#e9ebee",
+              color: "#0c0f13",
+              fontSize: 26,
               fontWeight: 700,
             }}
           >
             {profile.initials}
           </div>
-          <div style={{ display: "flex", width: 10, height: 10, borderRadius: 10, background: "#818cf8" }} />
+          <div style={{ display: "flex", fontSize: 26, color: "#a1a8b2" }}>{profile.location}</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 88, fontWeight: 700, letterSpacing: "-0.03em" }}>{profile.name}</div>
-          <div style={{ display: "flex", flexDirection: "column", marginTop: 20, fontSize: 34, color: "#a1a1aa" }}>
-            {roles.map((role) => (
+          <div style={{ fontSize: 92, fontWeight: 700, letterSpacing: "-0.03em" }}>{profile.name}</div>
+          <div style={{ display: "flex", marginTop: 18, fontSize: 34, color: "#a1a8b2" }}>
+            {roles.map((role, index) => (
               <div key={role} style={{ display: "flex" }}>
-                {role}
+                {index > 0 && <div style={{ display: "flex", color: "#2dd4bf", padding: "0 18px" }}>/</div>}
+                <div style={{ display: "flex" }}>{role}</div>
               </div>
             ))}
           </div>
@@ -63,12 +63,12 @@ export default function OpenGraphImage() {
               key={item}
               style={{
                 display: "flex",
-                padding: "10px 18px",
-                borderRadius: 10,
-                border: "1px solid #33333b",
-                background: "#111114",
+                padding: "8px 16px",
+                borderRadius: 6,
+                border: "1px solid #353d4a",
+                background: "#12161c",
                 fontSize: 24,
-                color: "#e4e4e7",
+                color: "#e9ebee",
               }}
             >
               {item}
