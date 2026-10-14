@@ -10,7 +10,7 @@ export function Projects() {
       <SectionHeading
         id="work-title"
         title="Enterprise platforms, built and maintained."
-        description="Platforms I lead, build, and maintain. Each card links to a short engineering case study."
+        description="Platforms I lead, build, and maintain."
       />
       <ul className="grid gap-3 md:grid-cols-2">
         {projects.map((project) => (
