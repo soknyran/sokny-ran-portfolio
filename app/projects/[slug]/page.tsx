@@ -72,7 +72,7 @@ function CardGrid({ items }: { items: TitledText[] }) {
   return (
     <ul className="grid gap-4 sm:grid-cols-2">
       {items.map((item) => (
-        <li key={item.title} className="rounded-xl border border-border bg-surface p-5">
+        <li key={item.title} className="rounded-[18px] bg-surface p-5">
           <h3 className="font-semibold tracking-tight">{item.title}</h3>
           <p className="mt-1.5 text-sm leading-relaxed text-muted">{item.detail}</p>
         </li>
@@ -111,11 +111,11 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         />
         <Container className="relative pt-10 pb-14 sm:pt-14 sm:pb-20">
           <Link
-            href="/#projects"
+            href="/#work"
             className="inline-flex items-center gap-1.5 rounded-md text-sm text-muted transition-colors hover:text-fg"
           >
             <ArrowLeft className="size-4" aria-hidden="true" />
-            Back to Projects
+            Back to Work
           </Link>
 
           <div className="mt-10 flex flex-wrap items-center gap-2">
@@ -181,7 +181,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           <CaseSection id="overview" title="Overview">
             <div className="space-y-5">
               <Prose>{project.overview}</Prose>
-              <div className="rounded-xl border border-border bg-surface p-5">
+              <div className="rounded-[18px] bg-surface p-5">
                 <h3 className="text-sm font-semibold">Context</h3>
                 <p className="mt-2 max-w-3xl leading-relaxed text-muted">{project.context}</p>
               </div>
@@ -233,7 +233,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
             <CaseSection id="stack" title="Technology stack">
               <dl className="grid gap-4 sm:grid-cols-2">
                 {project.stacks.map((group) => (
-                  <div key={group.label} className="rounded-xl border border-border bg-surface p-5">
+                  <div key={group.label} className="rounded-[18px] bg-surface p-5">
                     <dt className="font-mono text-xs font-medium tracking-wider text-accent uppercase">{group.label}</dt>
                     <dd className="mt-3">
                       <SkillBadgeList skills={group.items} />
@@ -266,11 +266,11 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
 
           <nav aria-label="More projects" className="flex flex-col gap-4 border-t border-border pt-10 sm:flex-row sm:justify-between">
             <Link
-              href="/#projects"
+              href="/#work"
               className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-fg"
             >
               <ArrowLeft className="size-4" aria-hidden="true" />
-              Back to Projects
+              Back to Work
             </Link>
             <Link
               href={`/projects/${next.slug}`}

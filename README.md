@@ -10,7 +10,7 @@ A static, data-driven Next.js site with a homepage and engineering case studies 
 - **Next.js 16** (App Router, static rendering, `generateStaticParams`)
 - **React 19** + **TypeScript** (strict)
 - **Tailwind CSS v4** with CSS-variable design tokens
-- **Framer Motion** (lazy-loaded `domAnimation` features, scroll reveals and menu only)
+- **Framer Motion** (lazy-loaded `domAnimation` features, mobile menu only)
 - **Lucide** icons (GitHub/LinkedIn marks are inlined SVGs, since Lucide no longer ships brand icons)
 
 No backend, no database, no analytics. Deploys to Vercel as-is.
@@ -31,7 +31,7 @@ components/
   layout/                 Navbar, Footer, MotionProvider
   sections/               Hero, About, Experience, Projects, Skills, AIDevelopment, Education, Contact
   ui/                     Reusable pieces: Button, SectionHeading, ProjectCard, ExperienceItem,
-                          SkillBadge, SocialLinks, ThemeToggle, ArchitectureDiagram, …
+                          SkillBadge, SocialLinks, ThemeToggle, Terminal, Tile, AppIcon, ArchitectureDiagram, …
 data/                     ALL site content lives here
   profile.ts  social.ts  experience.ts  projects.ts  skills.ts  education.ts
 lib/                      site config (URL, SEO, nav), theme helpers, active-section hook, cn()
@@ -41,7 +41,7 @@ public/
   profile/                Profile photo (sokny-ran-headshot.jpg)
 ```
 
-Only the Navbar, ThemeToggle, Reveal and MotionProvider are client components.
+Only the Navbar, ThemeToggle, ProfileAvatar and MotionProvider are client components.
 Everything else renders on the server at build time.
 
 ## Getting started
@@ -69,10 +69,10 @@ All content is in `data/`. Components only render it.
 
 | What | File | Notes |
 | --- | --- | --- |
-| Name, title, tagline, about text, quick facts, email | `data/profile.ts` | Remaining to-dos are listed at the top of the file |
+| Name, title, tagline, hero summary, about text, stats row, languages, email | `data/profile.ts` | Remaining to-dos are listed at the top of the file |
 | LinkedIn / GitHub / email links | `data/social.ts` | Used by navbar, hero, contact, footer and JSON-LD |
 | Experience | `data/experience.ts` | Responsibilities are grouped; add/remove groups freely |
-| Projects + case studies | `data/projects.ts` | `slug` becomes `/projects/<slug>`; `featured: true` shows the large card |
+| Projects + case studies | `data/projects.ts` | `slug` becomes `/projects/<slug>`; `featured: true` makes the card full width |
 | Skills + AI workflow | `data/skills.ts` | `skillCategories` and `aiWorkflow` |
 | Education | `data/education.ts` | |
 | Navigation, SEO title/description/keywords | `lib/site.ts` | |
@@ -85,8 +85,7 @@ an architecture diagram drawn from `architecture.layers`.
 **Experience:** edit or add entries in `data/experience.ts`. An entry with `end: "Present"` gets the
 highlighted timeline node.
 
-**Skills:** edit `skillCategories` in `data/skills.ts`. To add a category, also map its `id` to an icon
-in `components/sections/Skills.tsx`.
+**Skills:** edit `skillCategories` in `data/skills.ts`; they render as the "Tech specs" list.
 
 ### Replacing the profile photo
 
