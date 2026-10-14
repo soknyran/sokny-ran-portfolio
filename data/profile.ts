@@ -31,8 +31,8 @@ export const profile: Profile = {
   currentCompany: "KOSIGN",
   currentFocus: ["WeCMS Legacy · Production Maintenance & Development", "New WeCMS · UAT · Spring Boot + Next.js"],
   email: "soknyran.dev@gmail.com",
-  resumeUrl: "/resume/sokny-ran-cv.pdf",
-  resumeFileName: "Sokny-Ran-CV.pdf",
+  resumeUrl: "/resume/sokny-ran-resume.pdf",
+  resumeFileName: "Sokny-Ran-Resume.pdf",
   about: [
     "Software Engineer specializing in enterprise web applications, financial systems, and AI-assisted software modernization. Experienced in full-stack development using Java, Spring Boot, Next.js, TypeScript, JavaScript, PostgreSQL, HTML, CSS, and RESTful APIs.",
     "Lead the development of WeCMS, an integrated Cash Management System (CMS) for mid-sized and large enterprises in Vietnam. The legacy JexFrame-based version is currently running in production and continues to be actively maintained through new feature development, bug fixes, and urgent customer requests from the Product Owner team.",

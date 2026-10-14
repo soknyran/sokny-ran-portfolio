@@ -37,7 +37,7 @@ data/                     ALL site content lives here
 lib/                      site config (URL, SEO, nav), theme helpers, active-section hook, cn()
 types/                    Shared TypeScript types
 public/
-  resume/sokny-ran-cv.pdf The downloadable CV (edit docs/Sokny-Ran-CV.docx, then re-export)
+  resume/sokny-ran-resume.pdf The downloadable resume (edit docs/Sokny-Ran-Resume.docx, then re-export)
 ```
 
 Only the Navbar, ThemeToggle and MotionProvider are client components. The site uses no photos.
@@ -84,10 +84,10 @@ highlighted timeline node.
 
 **Skills:** edit `skillCategories` in `data/skills.ts`; they render as the Tech specs list.
 
-### Updating the CV
+### Updating the resume
 
-The editable source is `docs/Sokny-Ran-CV.docx`. After editing it, export it to PDF (in Word: File → Save As →
-PDF) and overwrite `public/resume/sokny-ran-cv.pdf`. The source has no photo; keep it that way. Keep the file name, or update `resumeUrl` in
+The editable source is `docs/Sokny-Ran-Resume.docx`. After editing it, export it to PDF (in Word: File → Save As →
+PDF) and overwrite `public/resume/sokny-ran-resume.pdf`. The source has no photo; keep it that way. Keep the file name, or update `resumeUrl` in
 `data/profile.ts`. The download file name is `resumeFileName`.
 
 ### Social preview image
