@@ -1,20 +1,19 @@
 import { projects } from "@/data/projects";
-import { cn } from "@/lib/cn";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Projects() {
   return (
-    <Section id="work">
-      <SectionHeading
-        id="work-title"
-        title="Enterprise platforms, built and maintained."
-        description="Platforms I lead, build, and maintain. Each card links to a short engineering case study."
-      />
-      <ul className="grid gap-3 md:grid-cols-2">
+    <Section
+      id="projects"
+      index="03"
+      label="Projects"
+      title="Featured projects"
+      description="Enterprise platforms I build and maintain, described at a public level only."
+    >
+      <ul className="space-y-4">
         {projects.map((project) => (
-          <li key={project.slug} className={cn("min-w-0", project.featured && "md:col-span-2")}>
+          <li key={project.slug} id={project.slug} className="scroll-mt-20">
             <ProjectCard project={project} />
           </li>
         ))}
