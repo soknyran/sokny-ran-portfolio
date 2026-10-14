@@ -1,49 +1,29 @@
-import { Building2, CloudCog, Database, LayoutTemplate, Server, Sparkles, type LucideIcon } from "lucide-react";
 import { skillCategories } from "@/data/skills";
-import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { SkillBadgeList } from "@/components/ui/SkillBadge";
-
-const icons: Record<string, LucideIcon> = {
-  backend: Server,
-  frontend: LayoutTemplate,
-  database: Database,
-  devops: CloudCog,
-  enterprise: Building2,
-  ai: Sparkles,
-};
+import { Tile } from "@/components/ui/Tile";
 
 export function Skills() {
   return (
-    <Section id="skills">
+    <Section id="specs">
       <SectionHeading
-        id="skills-title"
-        eyebrow="Skills"
-        title="Technical skills"
+        id="specs-title"
+        title="Tech specs."
         description="The tools and domains I work with day to day, grouped by where they sit in the stack."
       />
-      <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {skillCategories.map((category, index) => {
-          const Icon = icons[category.id] ?? Server;
-          return (
-            <li key={category.id} className="flex">
-              <Reveal delay={(index % 3) * 0.05} className="flex w-full">
-                <div className="flex w-full flex-col rounded-2xl border border-border bg-surface p-6">
-                  <div className="flex items-center gap-3">
-                    <span className="flex size-9 items-center justify-center rounded-lg border border-border bg-bg">
-                      <Icon className="size-4 text-accent" aria-hidden="true" />
-                    </span>
-                    <h3 className="font-semibold tracking-tight">{category.title}</h3>
-                  </div>
-                  <p className="mt-3 text-sm text-muted">{category.description}</p>
-                  <SkillBadgeList skills={category.skills} className="mt-5" />
-                </div>
-              </Reveal>
-            </li>
-          );
-        })}
-      </ul>
+      <Tile>
+        <dl className="divide-y divide-border">
+          {skillCategories.map((category) => (
+            <div key={category.id} className="grid gap-1 px-5 py-4 sm:grid-cols-[200px_minmax(0,1fr)] sm:gap-6">
+              <dt>
+                <span className="text-sm font-semibold tracking-tight">{category.title}</span>
+                <span className="mt-0.5 block text-xs text-muted">{category.description}</span>
+              </dt>
+              <dd className="text-sm leading-relaxed">{category.skills.join(", ")}</dd>
+            </div>
+          ))}
+        </dl>
+      </Tile>
     </Section>
   );
 }

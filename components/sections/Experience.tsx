@@ -1,6 +1,6 @@
 import { experience } from "@/data/experience";
+import { projects } from "@/data/projects";
 import { ExperienceItem } from "@/components/ui/ExperienceItem";
-import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -9,16 +9,14 @@ export function Experience() {
     <Section id="experience">
       <SectionHeading
         id="experience-title"
-        eyebrow="Experience"
-        title="Professional experience"
+        title="Experience."
         description="Enterprise financial software at KOSIGN, built on a foundation of hands-on customer implementation and support."
       />
-      <ol className="mt-14 space-y-16 border-l border-border">
+      <ol className="space-y-3">
         {experience.map((item) => (
           <li key={`${item.company}-${item.start}`}>
-            <Reveal>
-              <ExperienceItem item={item} current={item.end === "Present"} />
-            </Reveal>
+            {/* Every project on the site was delivered at the current employer. */}
+            <ExperienceItem item={item} engagements={item.end === "Present" ? projects : []} />
           </li>
         ))}
       </ol>

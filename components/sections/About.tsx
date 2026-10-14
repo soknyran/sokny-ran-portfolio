@@ -1,41 +1,41 @@
+import { Bot, RefreshCcw, Workflow, type LucideIcon } from "lucide-react";
 import { profile } from "@/data/profile";
-import { Reveal } from "@/components/ui/Reveal";
+import { AppIcon, type Tint } from "@/components/ui/AppIcon";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Tile } from "@/components/ui/Tile";
+
+const cardIcons: { icon: LucideIcon; tint: Tint }[] = [
+  { icon: Workflow, tint: "blue" },
+  { icon: RefreshCcw, tint: "green" },
+  { icon: Bot, tint: "violet" },
+];
 
 export function About() {
   return (
     <Section id="about">
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-        <div>
-          <SectionHeading id="about-title" eyebrow="About" title="Enterprise software, end to end." />
-          <dl className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-[auto_auto_1fr] lg:grid-cols-1">
-            {profile.quickFacts.map((fact) => (
-              <div key={fact.label} className="border-l-2 border-accent pl-4">
-                <dt className="text-sm text-muted">{fact.label}</dt>
-                <dd className="mt-1 font-semibold tracking-tight">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <Reveal>
-          <div className="space-y-5 text-base leading-relaxed text-muted text-pretty sm:text-lg">
-            {profile.about.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-            ))}
-          </div>
-
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
-            {profile.aboutHighlights.map((highlight) => (
-              <li key={highlight.title} className="rounded-xl border border-border bg-surface p-5">
-                <h3 className="font-semibold tracking-tight">{highlight.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">{highlight.description}</p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+      <SectionHeading id="about-title" title="Enterprise software, end to end." description={profile.aboutLead} />
+      <div className="gap-x-7 text-muted text-pretty md:columns-2">
+        {profile.about.map((paragraph) => (
+          <p key={paragraph.slice(0, 32)} className="mb-3 break-inside-avoid">
+            {paragraph}
+          </p>
+        ))}
       </div>
+      <ul className="mt-6 grid gap-3 md:grid-cols-3">
+        {profile.aboutHighlights.map((highlight, index) => {
+          const { icon, tint } = cardIcons[index % cardIcons.length];
+          return (
+            <li key={highlight.title}>
+              <Tile className="h-full p-5">
+                <AppIcon icon={icon} tint={tint} />
+                <h3 className="mt-3 text-[15px] font-semibold tracking-tight">{highlight.title}</h3>
+                <p className="mt-1 text-sm text-muted">{highlight.description}</p>
+              </Tile>
+            </li>
+          );
+        })}
+      </ul>
     </Section>
   );
 }

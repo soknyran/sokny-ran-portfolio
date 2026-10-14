@@ -1,35 +1,24 @@
 import { projects } from "@/data/projects";
+import { cn } from "@/lib/cn";
 import { ProjectCard } from "@/components/ui/ProjectCard";
-import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Projects() {
-  const featured = projects.filter((project) => project.featured);
-  const others = projects.filter((project) => !project.featured);
-
   return (
-    <Section id="projects">
+    <Section id="work">
       <SectionHeading
-        id="projects-title"
-        eyebrow="Projects"
-        title="Featured projects"
-        description="Enterprise platforms I build and maintain. Each one links to a short engineering case study."
+        id="work-title"
+        title="Enterprise platforms, built and maintained."
+        description="Platforms I lead, build, and maintain. Each card links to a short engineering case study."
       />
-      <div className="mt-14 space-y-6">
-        {featured.map((project) => (
-          <Reveal key={project.slug}>
+      <ul className="grid gap-3 md:grid-cols-2">
+        {projects.map((project) => (
+          <li key={project.slug} className={cn("min-w-0", project.featured && "md:col-span-2")}>
             <ProjectCard project={project} />
-          </Reveal>
+          </li>
         ))}
-        <div className="grid gap-6 md:grid-cols-2">
-          {others.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 0.06} className="flex min-w-0">
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
-        </div>
-      </div>
+      </ul>
     </Section>
   );
 }

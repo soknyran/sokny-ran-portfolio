@@ -1,32 +1,40 @@
+import { Mail, MessageCircle } from "lucide-react";
 import { profile } from "@/data/profile";
 import { getSocialLinks } from "@/data/social";
+import { AppIcon } from "@/components/ui/AppIcon";
+import { ButtonAnchor } from "@/components/ui/Button";
 import { DownloadCVButton } from "@/components/ui/DownloadCVButton";
-import { Reveal } from "@/components/ui/Reveal";
-import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { socialIcons } from "@/components/ui/SocialLinks";
+import { Tile } from "@/components/ui/Tile";
+import { Container } from "@/components/ui/Container";
 
 export function Contact() {
   return (
-    <Section id="contact">
-      <div className="mx-auto max-w-4xl">
-        <SectionHeading
-          id="contact-title"
-          eyebrow="Contact"
-          title="Let's Connect"
-          description="I'm open to conversations about:"
-          align="center"
-        />
-        <ul className="mt-6 flex flex-wrap justify-center gap-2">
-          {profile.contactTopics.map((topic) => (
-            <li key={topic} className="rounded-full border border-border bg-surface px-3 py-1 text-sm text-muted">
-              {topic}
-            </li>
-          ))}
-        </ul>
+    <section id="contact" aria-labelledby="contact-title" className="scroll-mt-16 py-16 sm:py-20">
+      <Container>
+        <Tile className="flex flex-col items-center px-5 py-10 text-center sm:px-10">
+          <AppIcon icon={MessageCircle} tint="orange" />
+          <h2 id="contact-title" className="mt-4 text-[clamp(1.5rem,1vw+1.15rem,2rem)] leading-tight font-semibold tracking-tight">
+            Let&apos;s connect.
+          </h2>
+          <p className="mt-2 text-sm text-muted">I&apos;m open to conversations about:</p>
+          <ul className="mt-3 flex max-w-2xl flex-wrap justify-center gap-1.5">
+            {profile.contactTopics.map((topic) => (
+              <li key={topic} className="rounded-full bg-fill px-3 py-1 text-[13px] text-fg/80">
+                {topic}
+              </li>
+            ))}
+          </ul>
 
-        <Reveal className="mt-12 border-t border-border pt-12">
-          <ul className="grid grid-cols-1 gap-2.5 min-[480px]:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-2.5">
+            <ButtonAnchor href={`mailto:${profile.email}`} variant="primary">
+              <Mail className="size-4" aria-hidden="true" />
+              Email me
+            </ButtonAnchor>
+            <DownloadCVButton variant="secondary" />
+          </div>
+
+          <ul className="mt-8 grid w-full max-w-3xl grid-cols-1 gap-2 min-[480px]:grid-cols-2 lg:grid-cols-3">
             {getSocialLinks(["linkedin", "github", "email", "facebook", "instagram", "threads"]).map(
               ({ kind, label, href, display }) => {
                 const Icon = socialIcons[kind];
@@ -36,8 +44,8 @@ export function Contact() {
                     <a
                       href={href}
                       title={`${label}: ${display}`}
-                      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-                      className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-border bg-bg px-4 text-sm transition-colors hover:border-border-strong hover:bg-surface"
+                      {...(external && { target: "_blank", rel: "me noopener noreferrer" })}
+                      className="flex h-10 w-full items-center justify-center gap-2 rounded-full bg-surface-2 px-4 text-sm transition-colors hover:bg-fill"
                     >
                       <Icon className="size-4 shrink-0 text-muted" aria-hidden="true" />
                       <span className="shrink-0 font-medium">{label}</span>
@@ -48,12 +56,8 @@ export function Contact() {
               },
             )}
           </ul>
-
-          <div className="mt-8 flex justify-center">
-            <DownloadCVButton variant="primary" />
-          </div>
-        </Reveal>
-      </div>
-    </Section>
+        </Tile>
+      </Container>
+    </section>
   );
 }
