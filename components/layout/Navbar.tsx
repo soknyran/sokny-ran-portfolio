@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { profile } from "@/data/profile";
@@ -13,17 +13,12 @@ import { cn } from "@/lib/cn";
 import { Container } from "@/components/ui/Container";
 import { ProfileAvatar } from "@/components/ui/ProfileAvatar";
 import { DownloadCVButton } from "@/components/ui/DownloadCVButton";
-import { SocialLinks, socialIcons } from "@/components/ui/SocialLinks";
+import { socialIcons } from "@/components/ui/SocialLinks";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const sectionIds = navItems.map((item) => item.id);
-/** Matches Tailwind's `xl` breakpoint, where the desktop navigation takes over. */
-const DESKTOP_QUERY = "(min-width: 1280px)";
-
-function subscribeToScroll(callback: () => void) {
-  window.addEventListener("scroll", callback, { passive: true });
-  return () => window.removeEventListener("scroll", callback);
-}
+/** Matches Tailwind's `md` breakpoint, where the inline navigation takes over. */
+const DESKTOP_QUERY = "(min-width: 768px)";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -32,11 +27,6 @@ export function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const active = useActiveSection(sectionIds, pathname === "/");
-  const scrolled = useSyncExternalStore(
-    subscribeToScroll,
-    () => window.scrollY > 8,
-    () => false,
-  );
 
   useEffect(() => {
     if (!open) return;
@@ -63,36 +53,30 @@ export function Navbar() {
   }, [open]);
 
   const close = () => setOpen(false);
-  const solid = scrolled || open;
 
   return (
     <header className="sticky top-0 z-50 isolate">
       {/* Background layer: kept separate so the blur is not applied to the popup menu. */}
       <div
         aria-hidden="true"
-        className={cn(
-          "absolute inset-0 -z-10 border-b transition-[background-color,border-color] duration-200",
-          solid
-            ? "border-border bg-bg/85 backdrop-blur-md supports-[backdrop-filter]:bg-bg/70"
-            : "border-transparent bg-transparent",
-        )}
+        className="absolute inset-0 -z-10 border-b border-border bg-bg/80 backdrop-blur-xl backdrop-saturate-150"
       />
 
       <a
         href="#main"
-        className="sr-only rounded-md bg-fg px-3 py-2 text-sm text-bg focus:not-sr-only focus:absolute focus:top-3 focus:left-3"
+        className="sr-only rounded-full bg-btn px-3.5 py-2 text-sm text-white focus:not-sr-only focus:absolute focus:top-2 focus:left-4 focus:z-10"
       >
         Skip to content
       </a>
 
-      <Container className="flex h-16 items-center justify-between gap-6">
-        <Link href="/#home" onClick={close} className="flex shrink-0 items-center gap-2.5 rounded-md">
-          <ProfileAvatar size="sm" eager />
-          <span className="text-sm font-semibold tracking-tight">{profile.name}</span>
+      <Container className="flex h-12 items-center gap-5">
+        <Link href="/" onClick={close} className="flex min-w-0 items-center gap-2" aria-label={`${profile.name}, home`}>
+          <ProfileAvatar size="xs" eager />
+          <span className="truncate text-sm font-semibold tracking-tight">{profile.name}</span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden xl:block">
-          <ul className="flex items-center">
+        <nav aria-label="Primary" className="ml-auto hidden md:block">
+          <ul className="flex items-center gap-6">
             {navItems.map((item) => {
               const current = active === item.id;
               return (
@@ -101,18 +85,11 @@ export function Navbar() {
                     href={`/#${item.id}`}
                     aria-current={current ? "true" : undefined}
                     className={cn(
-                      "relative block rounded-full px-2.5 py-1.5 text-sm whitespace-nowrap transition-colors hover:text-fg",
-                      current ? "text-fg" : "text-muted",
+                      "text-[13px] transition-opacity hover:opacity-100",
+                      current ? "font-medium text-fg opacity-100" : "text-fg opacity-75",
                     )}
                   >
                     {item.label}
-                    <span
-                      aria-hidden="true"
-                      className={cn(
-                        "absolute -bottom-1 left-1/2 size-1 -translate-x-1/2 rounded-full bg-accent transition-opacity",
-                        current ? "opacity-100" : "opacity-0",
-                      )}
-                    />
                   </Link>
                 </li>
               );
@@ -120,18 +97,12 @@ export function Navbar() {
           </ul>
         </nav>
 
-        <div className="flex shrink-0 items-center gap-1">
-          <div className="hidden items-center gap-1 xl:flex">
-            <SocialLinks kinds={["linkedin", "github"]} size="sm" />
-            <span aria-hidden="true" className="mx-1 h-5 w-px bg-border" />
-          </div>
+        <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-0">
           <ThemeToggle />
-          <div className="ml-2 hidden xl:block">
-            <DownloadCVButton variant="primary" size="sm" />
-          </div>
+          <DownloadCVButton variant="primary" size="xs" label="CV" className="hidden sm:inline-flex" />
           <div
             ref={menuRef}
-            className="relative xl:hidden"
+            className="relative md:hidden"
             onBlur={(event) => {
               // Close when keyboard focus moves to an element outside the button and popup.
               // (A null relatedTarget is a click on non-focusable space; pointerdown handles clicks.)
@@ -143,15 +114,15 @@ export function Navbar() {
               ref={toggleRef}
               type="button"
               className={cn(
-                "inline-flex size-9 items-center justify-center rounded-full text-fg transition-colors hover:bg-surface-2",
-                open && "bg-surface-2",
+                "inline-flex size-8 items-center justify-center rounded-full bg-fill text-fg transition-colors hover:bg-fill-hover",
+                open && "bg-fill-hover",
               )}
               aria-expanded={open}
               aria-controls={menuId}
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((value) => !value)}
             >
-              {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+              {open ? <X className="size-4" aria-hidden="true" /> : <Menu className="size-4" aria-hidden="true" />}
             </button>
 
             <AnimatePresence>
@@ -163,17 +134,9 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.98 }}
                   transition={{ duration: 0.15, ease: "easeOut" }}
-                  className="absolute top-[calc(100%+12px)] -right-1 max-h-[calc(100dvh-5rem)] w-[min(300px,calc(100vw-24px))] origin-top-right overflow-y-auto rounded-xl border border-border bg-bg p-1.5 shadow-[0_12px_32px_-8px_rgb(0_0_0/0.18),0_2px_6px_-2px_rgb(0_0_0/0.06)] sm:right-0 dark:shadow-[0_12px_32px_-8px_rgb(0_0_0/0.6)]"
+                  className="absolute top-[calc(100%+10px)] -right-1 max-h-[calc(100dvh-4.5rem)] w-[min(280px,calc(100vw-24px))] origin-top-right overflow-y-auto rounded-2xl border border-border bg-surface p-1.5 shadow-card"
                 >
-                  <div className="flex items-center gap-2.5 px-2.5 pt-2 pb-2.5">
-                    <ProfileAvatar size="sm" />
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold tracking-tight">{profile.name}</p>
-                      <p className="text-xs leading-snug text-muted">{profile.title.split(" | ").join(" · ")}</p>
-                    </div>
-                  </div>
-
-                  <nav aria-label="Mobile" className="border-t border-border pt-1">
+                  <nav aria-label="Mobile">
                     <ul>
                       {navItems.map((item) => {
                         const current = active === item.id;
@@ -184,12 +147,11 @@ export function Navbar() {
                               onClick={close}
                               aria-current={current ? "true" : undefined}
                               className={cn(
-                                "flex items-center justify-between rounded-lg px-2.5 py-2.5 text-sm transition-colors hover:bg-surface-2 hover:text-fg",
-                                current ? "bg-surface-2 font-medium text-fg" : "text-muted",
+                                "flex items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors hover:bg-fill",
+                                current ? "bg-fill font-medium text-fg" : "text-fg/80",
                               )}
                             >
                               {item.label}
-                              {current && <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />}
                             </Link>
                           </li>
                         );
@@ -207,7 +169,7 @@ export function Navbar() {
                             href={href}
                             onClick={close}
                             {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-                            className="flex items-center justify-center gap-1.5 rounded-lg px-1 py-2 text-[13px] text-muted transition-colors hover:bg-surface-2 hover:text-fg"
+                            className="flex items-center justify-center gap-1.5 rounded-xl px-1 py-2 text-[13px] text-muted transition-colors hover:bg-fill hover:text-fg"
                           >
                             <Icon className="size-4 shrink-0" aria-hidden="true" />
                             {label}
@@ -218,7 +180,7 @@ export function Navbar() {
                   </ul>
 
                   <div className="mt-1 border-t border-border px-1 pt-2 pb-1">
-                    <DownloadCVButton variant="primary" className="w-full" />
+                    <DownloadCVButton variant="primary" size="sm" className="w-full" />
                   </div>
                 </m.div>
               )}

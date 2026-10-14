@@ -7,21 +7,14 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <Container className="flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="font-semibold tracking-tight">{profile.name}</p>
-          <p className="mt-1 text-sm text-muted">{profile.title}</p>
-        </div>
-        <div className="flex flex-col gap-3 md:items-end">
-          <SocialLinks
-            kinds={["linkedin", "github", "facebook", "instagram", "threads", "email"]}
-            size="sm"
-            className="-ml-2 md:-mr-2 md:ml-0"
-          />
-          <p className="text-sm text-muted">
-            © {year} {profile.name}. All rights reserved.
+      <Container className="flex flex-col gap-4 py-6 text-xs text-muted md:flex-row md:items-center md:justify-between">
+        <div className="space-y-1">
+          <p>Built with Next.js. No cookies, no trackers. Hosted on Vercel.</p>
+          <p>
+            © {year} {profile.name}. {profile.title.split(" | ").join(" · ")}
           </p>
         </div>
+        <SocialLinks kinds={["linkedin", "github", "facebook", "instagram", "threads", "email"]} size="sm" />
       </Container>
     </footer>
   );
