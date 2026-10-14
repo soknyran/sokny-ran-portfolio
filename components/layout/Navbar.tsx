@@ -58,25 +58,25 @@ export function Navbar() {
       {/* Background layer: kept separate so the blur is not applied to the popup menu. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 border-b border-border bg-bg/90 backdrop-blur-md"
+        className="absolute inset-0 -z-10 border-b border-border bg-bg/80 backdrop-blur-xl backdrop-saturate-150"
       />
 
       <a
         href="#main"
-        className="sr-only rounded-md bg-accent px-3 py-2 text-sm text-accent-fg focus:not-sr-only focus:absolute focus:top-3 focus:left-4 focus:z-10"
+        className="sr-only rounded-full bg-btn px-3.5 py-2 text-sm text-white focus:not-sr-only focus:absolute focus:top-2 focus:left-4 focus:z-10"
       >
         Skip to content
       </a>
 
-      <Container className="flex h-14 items-center gap-6">
-        <Link href="/" onClick={close} className="flex min-w-0 items-center gap-2.5 rounded-md">
+      <Container className="flex h-12 items-center gap-5">
+        <Link href="/" onClick={close} className="flex min-w-0 items-center gap-2" aria-label={`${profile.name}, home`}>
           <span
             aria-hidden="true"
-            className="grid size-7 shrink-0 place-items-center rounded-md bg-fg font-mono text-[11px] font-medium text-bg"
+            className="grid size-6 shrink-0 place-items-center rounded-md bg-fg text-[10px] font-semibold text-bg"
           >
             {profile.initials}
           </span>
-          <span className="truncate text-sm font-semibold">{profile.name}</span>
+          <span className="truncate text-sm font-semibold tracking-tight">{profile.name}</span>
         </Link>
 
         <nav aria-label="Primary" className="ml-auto hidden md:block">
@@ -89,8 +89,8 @@ export function Navbar() {
                     href={`/#${item.id}`}
                     aria-current={current ? "true" : undefined}
                     className={cn(
-                      "relative py-1 text-sm transition-colors hover:text-fg",
-                      current ? "text-fg after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:bg-accent" : "text-muted",
+                      "text-[13px] transition-opacity hover:opacity-100",
+                      current ? "font-medium text-fg opacity-100" : "text-fg opacity-75",
                     )}
                   >
                     {item.label}
@@ -103,9 +103,7 @@ export function Navbar() {
 
         <div className="ml-auto flex shrink-0 items-center gap-2 md:ml-0">
           <ThemeToggle />
-          <div className="hidden sm:block">
-            <DownloadCVButton variant="primary" size="sm" label="CV" />
-          </div>
+          <DownloadCVButton variant="primary" size="xs" label="CV" />
           <div
             ref={menuRef}
             className="relative md:hidden"
@@ -120,8 +118,8 @@ export function Navbar() {
               ref={toggleRef}
               type="button"
               className={cn(
-                "inline-flex size-8 items-center justify-center rounded-md border border-border text-fg transition-colors hover:border-border-strong",
-                open && "border-border-strong",
+                "inline-flex size-8 items-center justify-center rounded-full bg-fill text-fg transition-colors hover:bg-fill-hover",
+                open && "bg-fill-hover",
               )}
               aria-expanded={open}
               aria-controls={menuId}
@@ -140,7 +138,7 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.98 }}
                   transition={{ duration: 0.15, ease: "easeOut" }}
-                  className="absolute top-[calc(100%+10px)] -right-1 max-h-[calc(100dvh-4.5rem)] w-[min(280px,calc(100vw-24px))] origin-top-right overflow-y-auto rounded-lg border border-border bg-surface p-1.5 shadow-lg"
+                  className="absolute top-[calc(100%+10px)] -right-1 max-h-[calc(100dvh-4.5rem)] w-[min(280px,calc(100vw-24px))] origin-top-right overflow-y-auto rounded-2xl border border-border bg-surface p-1.5 shadow-card"
                 >
                   <nav aria-label="Mobile">
                     <ul>
@@ -153,8 +151,8 @@ export function Navbar() {
                               onClick={close}
                               aria-current={current ? "true" : undefined}
                               className={cn(
-                                "flex items-center justify-between rounded-md px-3 py-2.5 text-sm transition-colors hover:bg-surface-2",
-                                current ? "bg-surface-2 font-medium text-fg" : "text-muted",
+                                "flex items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors hover:bg-fill",
+                                current ? "bg-fill font-medium text-fg" : "text-fg/80",
                               )}
                             >
                               {item.label}
@@ -175,7 +173,7 @@ export function Navbar() {
                             href={href}
                             onClick={close}
                             {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-                            className="flex items-center justify-center gap-1.5 rounded-md px-1 py-2 text-[13px] text-muted transition-colors hover:bg-surface-2 hover:text-fg"
+                            className="flex items-center justify-center gap-1.5 rounded-xl px-1 py-2 text-[13px] text-muted transition-colors hover:bg-fill hover:text-fg"
                           >
                             <Icon className="size-4 shrink-0" aria-hidden="true" />
                             {label}

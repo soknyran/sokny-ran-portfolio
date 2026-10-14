@@ -8,9 +8,11 @@ export interface SocialLink {
   display: string;
 }
 
-export interface Fact {
-  label: string;
+export interface Stat {
+  /** Short headline value, e.g. a year or a count. */
   value: string;
+  /** Full statement of what the value means; must stand on its own. */
+  label: string;
 }
 
 export interface Profile {
@@ -36,7 +38,7 @@ export interface Profile {
   aboutLead: string;
   /** Principle cards in the About section. */
   aboutHighlights: { title: string; description: string }[];
-  facts: Fact[];
+  stats: Stat[];
   /** Spoken languages, as listed on the CV. */
   languages: string[];
   contactTopics: string[];

@@ -38,10 +38,10 @@ export default function HomePage() {
       />
       <Hero />
       <About />
-      <Experience />
       <Projects />
-      <AIDevelopment />
+      <Experience />
       <Skills />
+      <AIDevelopment />
       <Education />
       <Contact />
     </>

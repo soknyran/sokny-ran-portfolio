@@ -1,49 +1,36 @@
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import type { Experience, Project } from "@/types";
+import { projectIcon } from "@/lib/projectIcons";
+import { IconBadge } from "./IconBadge";
 import { SkillBadgeList } from "./SkillBadge";
-import { StatusBadge } from "./StatusBadge";
+import { Panel } from "./Panel";
 
-export function ExperienceItem({
-  item,
-  current,
-  projects = [],
-}: {
-  item: Experience;
-  current: boolean;
-  projects?: Project[];
-}) {
+export function ExperienceItem({ item, platforms = [] }: { item: Experience; platforms?: Project[] }) {
   return (
-    <article className="relative pl-7 sm:pl-9">
-      {/* Timeline node */}
-      <span
-        aria-hidden="true"
-        className="absolute top-2 left-0 flex size-3.5 -translate-x-1/2 items-center justify-center rounded-full border-2 border-border-strong bg-bg"
-      >
-        {current && <span className="size-1.5 rounded-full bg-accent" />}
-      </span>
-
-      <header className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+    <Panel className="p-5 sm:p-6">
+      <header className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
         <div>
-          <h3 className="text-xl font-semibold">{item.position}</h3>
-          <p className="mt-0.5 font-medium text-fg/85">{item.company}</p>
+          <h3 className="text-[17px] leading-tight font-semibold tracking-tight">{item.position}</h3>
+          <p className="mt-0.5 text-[13px] text-muted">
+            {item.company} · {item.location} · {item.employment} · {item.workMode}
+          </p>
         </div>
-        <p className="shrink-0 font-mono text-sm text-muted">
+        <p className="shrink-0 text-xs text-muted tabular-nums sm:mt-0.5">
           {item.start} – {item.end}
         </p>
       </header>
-      <p className="mt-1 text-sm text-muted">
-        {item.location} · {item.employment} · {item.workMode}
-      </p>
 
-      {item.summary && <p className="mt-4 max-w-3xl">{item.summary}</p>}
+      {item.summary && <p className="mt-3 text-sm text-muted">{item.summary}</p>}
 
-      <div className="mt-6 grid gap-x-10 gap-y-6 md:grid-cols-2">
+      <div className="mt-4 grid gap-x-8 gap-y-4 md:grid-cols-2">
         {item.responsibilities.map((group) => (
           <div key={group.title}>
-            <h4 className="font-mono text-xs tracking-wide text-muted uppercase">{group.title}</h4>
-            <ul className="mt-2.5 space-y-2">
+            <h4 className="text-xs font-medium tracking-wide text-muted uppercase">{group.title}</h4>
+            <ul className="mt-2 space-y-1.5">
               {group.items.map((responsibility) => (
                 <li key={responsibility} className="flex gap-2.5 text-sm">
-                  <span aria-hidden="true" className="mt-2 h-px w-2.5 shrink-0 bg-accent" />
+                  <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-subtle" />
                   {responsibility}
                 </li>
               ))}
@@ -52,24 +39,36 @@ export function ExperienceItem({
         ))}
       </div>
 
-      {projects.length > 0 && (
-        <div className="mt-6">
-          <h4 className="font-mono text-xs tracking-wide text-muted uppercase">Platforms</h4>
-          <ul className="mt-2.5 grid gap-2 sm:grid-cols-2">
-            {projects.map((project) => (
-              <li key={project.slug} className="rounded-md border border-border bg-surface px-3.5 py-2.5">
-                <p className="text-sm font-semibold">{project.name}</p>
-                <p className="text-xs text-muted">{project.role}</p>
-                <StatusBadge status={project.status} className="mt-1.5" />
-              </li>
-            ))}
+      {platforms.length > 0 && (
+        <>
+          <h4 className="mt-6 mb-1.5 text-xs font-medium tracking-wide text-muted uppercase">Platforms delivered</h4>
+          <ul className="divide-y divide-border overflow-hidden rounded-xl bg-surface-2">
+            {platforms.map((project) => {
+              const { icon, hue } = projectIcon(project.slug);
+              return (
+                <li key={project.slug}>
+                  <Link
+                    href={`/#${project.slug}`}
+                    className="flex items-center gap-3 px-3.5 py-2.5 transition-colors hover:bg-fill focus-visible:-outline-offset-2"
+                  >
+                    <IconBadge icon={icon} hue={hue} size="sm" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-medium">{project.name}</span>
+                      <span className="block truncate text-xs text-muted">{project.role}</span>
+                    </span>
+                    <span className="hidden text-xs text-muted sm:block">{project.status}</span>
+                    <ChevronRight className="size-4 shrink-0 text-subtle" aria-hidden="true" />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
-        </div>
+        </>
       )}
 
       {item.technologies.length > 0 && (
-        <SkillBadgeList label={`Technologies at ${item.company}`} skills={item.technologies} className="mt-6" />
+        <SkillBadgeList label={`Technologies at ${item.company}`} skills={item.technologies} className="mt-5" />
       )}
-    </article>
+    </Panel>
   );
 }

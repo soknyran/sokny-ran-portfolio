@@ -56,12 +56,13 @@ export const profile: Profile = {
         "Claude Code and MCP in daily analysis, implementation, and review work, with an engineer accountable for every change.",
     },
   ],
-  // "At a glance" list in the About section. Every value restates a fact found elsewhere on the site.
-  facts: [
-    { label: "Building enterprise software", value: "Since 2021" },
-    { label: "Platforms in production", value: "WeCMS · WABOOKS · JexAdmin" },
-    { label: "Cross-border collaboration", value: "Korea · Vietnam · Cambodia" },
-    { label: "WeCMS modernization", value: "Spring Boot + Next.js, deployed to UAT" },
+  // Stats row under the hero. Every value restates a fact found elsewhere on the site,
+  // and each label says exactly what the value means.
+  stats: [
+    { value: "2021", label: "Year I started building enterprise software" },
+    { value: "3", label: "Platforms in production: WeCMS, WABOOKS, JexAdmin" },
+    { value: "3", label: "Countries collaborated across: Korea, Vietnam, Cambodia" },
+    { value: "In UAT", label: "WeCMS modernization to Spring Boot + Next.js" },
   ],
   languages: ["Khmer", "English"],
   contactTopics: [
