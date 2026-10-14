@@ -24,7 +24,10 @@ export const profile: Profile = {
     "Production support",
     "Legacy modernization",
   ],
+  heroSummary:
+    "I lead the development of WeCMS, an integrated Cash Management System for mid-sized and large enterprises in Vietnam: the JexFrame version runs in production, and its Spring Boot and Next.js modernization is in UAT. Before that, I developed and maintained WABOOKS, WABOOKS TA, and JexAdmin, which are running in production.",
   location: "Phnom Penh, Cambodia",
+  timezone: "UTC+7",
   currentRole: "Software Engineer",
   currentCompany: "KOSIGN",
   currentFocus: ["WeCMS Legacy · Production Maintenance & Development", "New WeCMS · UAT · Spring Boot + Next.js"],
@@ -41,11 +44,8 @@ export const profile: Profile = {
     "Previously developed and maintained WABOOKS, WABOOKS TA, and JexAdmin, which are currently running in production.",
     "Passionate about building scalable, secure, and high-performance software, solving complex technical challenges, and leveraging AI to accelerate software development while maintaining code quality and engineering best practices.",
   ],
+  aboutLead: "Enterprise financial systems: cash management, payments, approval workflows, bank and ERP integration.",
   aboutHighlights: [
-    {
-      title: "Enterprise financial systems",
-      description: "Cash management, payments, approval workflows, bank and ERP integration.",
-    },
     {
       title: "Full lifecycle ownership",
       description: "From requirement analysis and design to deployment and production support.",
@@ -56,14 +56,18 @@ export const profile: Profile = {
     },
     {
       title: "AI-assisted engineering",
-      description: "Claude Code and MCP in daily analysis, implementation, and review work.",
+      description:
+        "Claude Code and MCP in daily analysis, implementation, and review work, with an engineer accountable for every change.",
     },
   ],
-  quickFacts: [
-    { label: "Building enterprise software", value: "Since 2021" },
-    { label: "Cross-border collaboration", value: "Korea · Vietnam · Cambodia" },
-    { label: "Enterprise platforms", value: "WeCMS · WABOOKS · JexAdmin" },
+  // Stats row under the hero. Every value restates a fact found elsewhere on the site.
+  stats: [
+    { value: "2021", label: "Building enterprise software since" },
+    { value: "3", label: "Enterprise platforms in production: WeCMS, WABOOKS, JexAdmin" },
+    { value: "3", label: "Countries collaborated across: Korea, Vietnam, Cambodia" },
+    { value: "UAT", label: "WeCMS on Spring Boot + Next.js, in active development" },
   ],
+  languages: ["Khmer", "English"],
   contactTopics: [
     "Software engineering opportunities",
     "Full-stack development",

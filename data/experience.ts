@@ -30,7 +30,7 @@ export const experience: Experience[] = [
       {
         title: "Collaboration",
         items: [
-          "Collaborate with Product Owners, business stakeholders, managers, designers, QA engineers, infrastructure engineers, developers, and enterprise clients in Vietnam, including Haeng Sung Electronics, Lumens Vina, Hansung Bolt, and Mirae Asset Financial Group, to review requirements, UI/UX designs, and storyboards and deliver secure, scalable, and high-quality enterprise software.",
+          "Collaborate with Product Owners, business stakeholders, managers, designers, QA engineers, infrastructure engineers, developers, and enterprise clients in Vietnam in manufacturing and financial services, to review requirements, UI/UX designs, and storyboards and deliver secure, scalable, and high-quality enterprise software.",
         ],
       },
       {

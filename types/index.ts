@@ -19,9 +19,10 @@ export interface ProfilePhoto {
   zoom: number;
 }
 
-export interface QuickFact {
-  label: string;
+export interface Stat {
+  /** Short headline value, e.g. a year or a count. */
   value: string;
+  label: string;
 }
 
 export interface Profile {
@@ -32,7 +33,10 @@ export interface Profile {
   tagline: string;
   /** Areas of work listed in the hero. */
   focusAreas: string[];
+  /** Two or three sentences shown under the tagline in the hero. */
+  heroSummary: string;
   location: string;
+  timezone: string;
   currentRole: string;
   currentCompany: string;
   /** Short status badges shown above the name in the Hero. */
@@ -43,8 +47,13 @@ export interface Profile {
   /** Set to null to show the initials monogram instead of a photo. */
   photo: ProfilePhoto | null;
   about: string[];
+  /** One-line subtitle under the About heading. */
+  aboutLead: string;
+  /** Principle cards in the About section. */
   aboutHighlights: { title: string; description: string }[];
-  quickFacts: QuickFact[];
+  stats: Stat[];
+  /** Spoken languages, as listed on the CV. */
+  languages: string[];
   contactTopics: string[];
 }
 
