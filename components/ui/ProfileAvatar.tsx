@@ -6,6 +6,7 @@ import { profile } from "@/data/profile";
 import { cn } from "@/lib/cn";
 
 const SIZES = {
+  xs: { box: "size-6", px: 24, initials: "text-[9px]" },
   sm: { box: "size-8", px: 32, initials: "text-[11px]" },
   lg: { box: "size-14", px: 56, initials: "text-base" },
 } as const;

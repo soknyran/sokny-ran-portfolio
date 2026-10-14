@@ -11,11 +11,7 @@ interface SectionProps {
 /** Homepage section: anchor target, labelled by its heading (`${id}-title`). */
 export function Section({ id, children, className }: SectionProps) {
   return (
-    <section
-      id={id}
-      aria-labelledby={`${id}-title`}
-      className={cn("scroll-mt-16 border-t border-border py-20 sm:py-28", className)}
-    >
+    <section id={id} aria-labelledby={`${id}-title`} className={cn("scroll-mt-16 pt-16 sm:pt-20", className)}>
       <Container>{children}</Container>
     </section>
   );

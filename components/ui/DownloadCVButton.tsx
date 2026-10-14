@@ -4,11 +4,17 @@ import { ButtonAnchor } from "./Button";
 
 interface DownloadCVButtonProps {
   variant?: "primary" | "secondary" | "ghost";
-  size?: "sm" | "md";
+  size?: "xs" | "sm" | "md";
+  label?: string;
   className?: string;
 }
 
-export function DownloadCVButton({ variant = "secondary", size = "md", className }: DownloadCVButtonProps) {
+export function DownloadCVButton({
+  variant = "secondary",
+  size = "md",
+  label = "Download CV",
+  className,
+}: DownloadCVButtonProps) {
   return (
     <ButtonAnchor
       href={profile.resumeUrl}
@@ -17,8 +23,8 @@ export function DownloadCVButton({ variant = "secondary", size = "md", className
       size={size}
       className={className}
     >
-      <Download className="size-4" aria-hidden="true" />
-      Download CV
+      {size !== "xs" && <Download className="size-4" aria-hidden="true" />}
+      {label}
     </ButtonAnchor>
   );
 }

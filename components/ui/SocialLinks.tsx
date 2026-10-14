@@ -25,7 +25,7 @@ export function SocialLinks({ className, kinds, size = "md" }: SocialLinksProps)
   const links = getSocialLinks(kinds);
 
   return (
-    <ul className={cn("flex items-center gap-1", className)}>
+    <ul className={cn("flex items-center gap-2", className)}>
       {links.map(({ kind, label, href }) => {
         const Icon = socialIcons[kind];
         const external = kind !== "email";
@@ -37,11 +37,11 @@ export function SocialLinks({ className, kinds, size = "md" }: SocialLinksProps)
               title={label}
               {...(external && { target: "_blank", rel: "noopener noreferrer" })}
               className={cn(
-                "inline-flex items-center justify-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-fg",
-                size === "sm" ? "size-9" : "size-10",
+                "inline-flex items-center justify-center rounded-full bg-fill text-muted transition-colors hover:bg-fill-hover hover:text-fg",
+                size === "sm" ? "size-8" : "size-9",
               )}
             >
-              <Icon className={size === "sm" ? "size-4" : "size-[18px]"} aria-hidden="true" />
+              <Icon className={size === "sm" ? "size-3.5" : "size-4"} aria-hidden="true" />
             </a>
           </li>
         );
