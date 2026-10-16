@@ -5,7 +5,6 @@ import { projectIcon } from "@/lib/projectIcons";
 import { IconBadge } from "./IconBadge";
 import { ArchitectureDiagram } from "./ArchitectureDiagram";
 import { GitHubIcon } from "./BrandIcons";
-import { SkillBadgeList } from "./SkillBadge";
 import { StatusBadge } from "./StatusBadge";
 
 /** Up to five outcome bullets: results first, topped up with responsibilities. */
@@ -51,7 +50,6 @@ export function ProjectCard({ project }: { project: Project }) {
           ))}
         </ul>
 
-        <SkillBadgeList label="Key technologies" skills={project.tags} className="mt-auto pt-4" />
 
         {project.githubUrl && (
           <a

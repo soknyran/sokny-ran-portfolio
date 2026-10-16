@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 
-/** Small pill used for technologies and tags. */
+/** Small pill used in the case-study technology stack lists. */
 export function SkillBadge({ children, className }: { children: string; className?: string }) {
   return (
     <span

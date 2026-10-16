@@ -126,16 +126,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           <p className="mt-2 text-lg font-medium text-fg/80 sm:text-xl">{project.subtitle}</p>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted text-pretty">{project.summary}</p>
 
-          <dl className="mt-10 grid gap-6 border-t border-border pt-8 sm:grid-cols-[200px_1fr]">
+          <dl className="mt-10 border-t border-border pt-8">
             <div>
               <dt className="text-xs text-subtle">Role</dt>
               <dd className="mt-1 font-medium">{project.role}</dd>
-            </div>
-            <div>
-              <dt className="text-xs text-subtle">Technology</dt>
-              <dd className="mt-2">
-                <SkillBadgeList skills={project.technologies} />
-              </dd>
             </div>
           </dl>
 
